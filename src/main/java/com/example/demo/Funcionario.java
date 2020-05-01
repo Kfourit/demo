@@ -1,47 +1,126 @@
 package com.example.demo;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
  * @author Tiago Kfouri
  * @version 1.0
- * 
- * Entity Funcionario
- *
  */
 @Entity
 public class Funcionario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="funcionario_seq")
-	private Integer id;
-	private String name;
+	private Integer idFuncionario;
+	private String nome;
+	private Integer ativo; //0 para inativo e 1 para ativo
+	private Integer sexo; //0 para masculino e 1 para feminino
+	private String cpf;
+	@Temporal(TemporalType.DATE)
+	private Date nascimento;
+	private String rg;
+	private String cargo;
+	private String descricao;
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	private byte[] imagem;
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	private byte[] atestadoDeSaude;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="funcionario_atividade",
+			joinColumns = @JoinColumn(name="idFuncionario",
+										referencedColumnName = "idFuncionario"),
+			inverseJoinColumns = @JoinColumn(name = "idAtividade",
+										referencedColumnName = "idAtividade"))
+	private List<Atividade> atividades;
 	
 	
-	public Integer getId() {
-		return id;
+	public String getNome() {
+		return nome;
 	}
-	public void setId(Integer id) {
-		this.id = id;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
-	public String getName() {
-		return name;
+	public Integer isAtivo() {
+		return ativo;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setAtivo(Integer ativo) {
+		this.ativo = ativo;
+	}
+	public Integer getSexo() {
+		return sexo;
+	}
+	public void setSexo(Integer sexo) {
+		this.sexo = sexo;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	public Date getNascimento() {
+		return nascimento;
+	}
+	public void setNascimento(Date nascimento) {
+		this.nascimento = nascimento;
+	}
+	public String getRg() {
+		return rg;
+	}
+	public void setRg(String rg) {
+		this.rg = rg;
+	}
+	public String getCargo() {
+		return cargo;
+	}
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	public byte[] getImagem() {
+		return imagem;
+	}
+	public void setImagem(byte[] imagem) {
+		this.imagem = imagem;
+	}
+	public byte[] getAtestadoDeSaude() {
+		return atestadoDeSaude;
+	}
+	public void setAtestadoDeSaude(byte[] atestadoDeSaude) {
+		this.atestadoDeSaude = atestadoDeSaude;
 	}
 	
-	
-	public Funcionario() {
-		super();
-	}
-	public Funcionario(String name) {
-		super();
-		this.name = name;
+	public void addAtividade(Atividade atividade) {
+		if(this.atividades == null) {
+			List<Atividade> atividades = new ArrayList<Atividade>();
+			this.atividades = atividades;
+		}
+		this.atividades.add(atividade);
+		
 	}
 	
 	

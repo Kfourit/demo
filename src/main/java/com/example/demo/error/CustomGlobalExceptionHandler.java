@@ -13,6 +13,11 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 	
 	// Let Spring handle the exception, we just override the status code
     @ExceptionHandler(FuncionarioNotFoundException.class)
+    public void springHandleFuncionarioNotFound(HttpServletResponse response) throws IOException {
+        response.sendError(HttpStatus.NOT_FOUND.value());
+    }
+    
+    @ExceptionHandler(UnknownError.class)
     public void springHandleNotFound(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.NOT_FOUND.value());
     }

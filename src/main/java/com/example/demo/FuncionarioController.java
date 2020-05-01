@@ -45,5 +45,12 @@ public class FuncionarioController {
 	void deleteFuncionario(@PathVariable Long id) {
 		repository.deleteById(id);
 	}
+	
+	//Error
+	@GetMapping("/error")
+	void throwError() {
+		throw new UnknownError();
+	}
+	
 
 }

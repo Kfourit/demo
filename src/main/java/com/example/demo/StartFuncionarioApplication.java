@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
  * @author Tiago Kfouri
  * @version 1.0
  * 
- * Class to start the REST web application. It inserts 3 funcionarios on db
+ * @apiNote Class to start the REST web application.
  *
  */
 @SpringBootApplication
@@ -20,14 +20,37 @@ public class StartFuncionarioApplication {
         SpringApplication.run(StartFuncionarioApplication.class, args);
     }
 
-	// init bean to insert 3 funcionarios into database.
+	// init bean to insert dump funcionario into database.
     @Bean
-    CommandLineRunner initDatabase(FuncionarioRepository repository) {
+    CommandLineRunner initDatabase(FuncionarioRepository funcionarioRepository, AtividadeRepository atividadeRepository) {
         return args -> {
-            repository.save(new Funcionario("Roberto"));
-            repository.save(new Funcionario("Pedro"));
-            repository.save(new Funcionario("Joao"));
+        	Funcionario funcionario = this.createDumpFuncionario();
+        	Atividade atividade = this.createDumpAtividade();
+     	
+        	funcionario.addAtividade(atividade);
+        	
+        	atividadeRepository.save(atividade);
+            funcionarioRepository.save(funcionario);
+            
         };
+    }
+    
+    private Atividade createDumpAtividade() {
+    	Atividade atividade = new Atividade();
+    	atividade.setNome("atividade1");
+    	return atividade;
+    }
+    
+    private Funcionario createDumpFuncionario() {
+    	
+    	Funcionario funcionario = new Funcionario();  	
+    	
+    	funcionario.setNome("tiago");
+    	funcionario.setAtivo(1);
+    	funcionario.setCargo("chefe");
+    	funcionario.setSexo(0);
+ 	
+    	return funcionario;
     }
 	
 
