@@ -20,11 +20,12 @@ public class StartFuncionarioApplication {
         SpringApplication.run(StartFuncionarioApplication.class, args);
     }
 
-	// init bean to insert dump funcionario into database.
+	// uncomment this if you want to init database with a dump funcionario and atividade
+	/*
     @Bean
     CommandLineRunner initDatabase(FuncionarioRepository funcionarioRepository, AtividadeRepository atividadeRepository) {
         return args -> {
-        	/*
+        	
         	Funcionario funcionario = this.createDumpFuncionario();
         	Atividade atividade = this.createDumpAtividade();
      	
@@ -32,10 +33,11 @@ public class StartFuncionarioApplication {
         	
         	atividadeRepository.save(atividade);
             funcionarioRepository.save(funcionario);
-            */
+            
             
         };
     }
+    */
     
     private Atividade createDumpAtividade() {
     	Atividade atividade = new Atividade();

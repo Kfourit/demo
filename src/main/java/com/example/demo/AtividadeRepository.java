@@ -10,5 +10,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @apiNote This interface extends JpaRepository, which contains all CRUD operations
  *
  */
-public interface AtividadeRepository extends JpaRepository<Atividade, Long>{
+public interface AtividadeRepository extends JpaRepository<Atividade, Integer>{
 }

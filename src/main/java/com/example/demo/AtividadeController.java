@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-
 /**
  * @author Tiago Kfouri
  * @version 1.0
@@ -22,41 +21,40 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 @RestController
-public class FuncionarioController {
+public class AtividadeController {
 	
 	@Autowired
-	private FuncionarioService funcionarioService;
+	private AtividadeService atividadeService;
 	
 	//List all
-	@GetMapping("/funcionarios")
-	List<Funcionario> findAll(){
-		return funcionarioService.findAll();
+	@GetMapping("/atividades")
+	List<Atividade> findAll(){
+		return atividadeService.findAll();
 	}
 	
 	//Find by Id
-	@GetMapping("/funcionarios/{id}")
-    Funcionario findById(@PathVariable Integer id) {
-        return funcionarioService.findById(id);
+	@GetMapping("/atividades/{id}")
+    Atividade findById(@PathVariable Integer id) {
+        return atividadeService.findById(id);
     }
 	
 	//Save
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping("/funcionarios")
-    Funcionario saveFuncionario(@RequestBody Funcionario newFuncionario) {
-        return funcionarioService.save(newFuncionario);
+	@PostMapping("/atividades")
+    Atividade saveAtividade(@RequestBody Atividade newAtividade) {
+        return atividadeService.save(newAtividade);
     }
 	
 	//Update
 	@PutMapping("/{id}")
-    public Funcionario update(@RequestBody Funcionario funcionario){
-        return funcionarioService.save(funcionario);
+    public Atividade update(@RequestBody Atividade atividade){
+        return atividadeService.save(atividade);
     }
 	
 	//Delete
-	@DeleteMapping("/funcionarios/{id}")
-	void deleteFuncionario(@PathVariable Integer id) {
-		funcionarioService.deleteById(id);
+	@DeleteMapping("/atividades/{id}")
+	void deleteAtividade(@PathVariable Integer id) {
+		atividadeService.deleteById(id);
 	}
-	
 
 }
