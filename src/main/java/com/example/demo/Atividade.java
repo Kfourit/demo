@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 /**
  * @author Tiago Kfouri
  * @version 1.0
+ * 
+ * @apiNote Entity Atividade
  *
  */
 @Entity

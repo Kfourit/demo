@@ -28,7 +28,7 @@ public class FuncionarioController {
 	
 	//Find by Id
 	@GetMapping("/funcionarios/{id}")
-    Funcionario findOne(@PathVariable Long id) {
+    Funcionario findOne(@PathVariable Integer id) {
         return repository.findById(id)
                 .orElseThrow(() -> new FuncionarioNotFoundException(id));
     }
@@ -42,7 +42,7 @@ public class FuncionarioController {
 	
 	//Delete
 	@DeleteMapping("/funcionarios/{id}")
-	void deleteFuncionario(@PathVariable Long id) {
+	void deleteFuncionario(@PathVariable Integer id) {
 		repository.deleteById(id);
 	}
 	

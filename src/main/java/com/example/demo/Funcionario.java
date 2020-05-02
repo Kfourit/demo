@@ -21,6 +21,9 @@ import javax.persistence.TemporalType;
 /**
  * @author Tiago Kfouri
  * @version 1.0
+ * 
+ * @apiNote Entity Funcionario
+ * 
  */
 @Entity
 public class Funcionario {
@@ -119,8 +122,15 @@ public class Funcionario {
 			List<Atividade> atividades = new ArrayList<Atividade>();
 			this.atividades = atividades;
 		}
-		this.atividades.add(atividade);
-		
+		this.atividades.add(atividade);	
+	}
+	public void removeAtividade(Atividade atividade) {
+		try {
+			this.atividades.remove(atividade);
+		}
+		finally{
+			
+		}
 	}
 	
 	

@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
  * @author Tiago Kfouri
  * @version 1.0
  * 
- * Entity EPI
+ * @apiNote Entity EPI
  *
  */
 @Entity

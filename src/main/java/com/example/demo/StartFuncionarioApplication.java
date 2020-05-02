@@ -24,6 +24,7 @@ public class StartFuncionarioApplication {
     @Bean
     CommandLineRunner initDatabase(FuncionarioRepository funcionarioRepository, AtividadeRepository atividadeRepository) {
         return args -> {
+        	/*
         	Funcionario funcionario = this.createDumpFuncionario();
         	Atividade atividade = this.createDumpAtividade();
      	
@@ -31,6 +32,7 @@ public class StartFuncionarioApplication {
         	
         	atividadeRepository.save(atividade);
             funcionarioRepository.save(funcionario);
+            */
             
         };
     }
