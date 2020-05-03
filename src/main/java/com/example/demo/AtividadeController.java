@@ -46,7 +46,7 @@ public class AtividadeController {
     }
 	
 	//Update
-	@PutMapping("/{id}")
+	@PutMapping("atividades/{id}")
     public Atividade update(@RequestBody Atividade atividade){
         return atividadeService.save(atividade);
     }

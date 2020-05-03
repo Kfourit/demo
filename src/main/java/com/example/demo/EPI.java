@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -20,11 +21,12 @@ public class EPI {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="epi_seq")
+	@Column(name="id_epi")
 	private Integer idEPI;
 	private String nome;
 	private String numeroCA;
 	
-	@JoinColumn(name = "idAtividade")
+	@JoinColumn(name = "id_atividade")
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Atividade atividade;
 	
@@ -41,6 +43,19 @@ public class EPI {
 	public void setNumeroCA(String numeroCA) {
 		this.numeroCA = numeroCA;
 	}
+	public Atividade getAtividade() {
+		return atividade;
+	}
+	public void setAtividade(Atividade atividade) {
+		this.atividade = atividade;
+	}
+	@Override
+	public String toString() {
+		return "EPI [idEPI=" + idEPI + ", nome=" + nome + ", numeroCA=" + numeroCA + ", atividade=" + atividade + "]";
+	}
+	
+	
+	
 	
 	
 }

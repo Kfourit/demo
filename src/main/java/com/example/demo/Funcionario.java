@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,14 +39,10 @@ public class Funcionario {
 	private String rg;
 	private String cargo;
 	private String descricao;
-	@Lob
-	@Basic(fetch = FetchType.LAZY)
-	private byte[] imagem;
-	@Lob
-	@Basic(fetch = FetchType.LAZY)
-	private byte[] atestadoDeSaude;
+	private String imagem;
+	private String atestadoDeSaude;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinTable(name="funcionario_atividade",
 			joinColumns = @JoinColumn(name="idFuncionario",
 										referencedColumnName = "idFuncionario"),
@@ -104,16 +99,16 @@ public class Funcionario {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public byte[] getImagem() {
+	public String getImagem() {
 		return imagem;
 	}
-	public void setImagem(byte[] imagem) {
+	public void setImagem(String imagem) {
 		this.imagem = imagem;
 	}
-	public byte[] getAtestadoDeSaude() {
+	public String getAtestadoDeSaude() {
 		return atestadoDeSaude;
 	}
-	public void setAtestadoDeSaude(byte[] atestadoDeSaude) {
+	public void setAtestadoDeSaude(String atestadoDeSaude) {
 		this.atestadoDeSaude = atestadoDeSaude;
 	}
 	
@@ -128,10 +123,18 @@ public class Funcionario {
 		try {
 			this.atividades.remove(atividade);
 		}
-		finally{
-			
+		catch(NullPointerException e) {
+			System.out.println("Error: " + e);
 		}
 	}
+	@Override
+	public String toString() {
+		return "Funcionario [idFuncionario=" + idFuncionario + ", nome=" + nome + ", ativo=" + ativo + ", sexo=" + sexo
+				+ ", cpf=" + cpf + ", nascimento=" + nascimento + ", rg=" + rg + ", cargo=" + cargo + ", descricao="
+				+ descricao + ", imagem=" + imagem + ", atestadoDeSaude=" + atestadoDeSaude + ", atividades="
+				+ atividades + "]";
+	}
+	
 	
 	
 

@@ -47,7 +47,7 @@ public class FuncionarioController {
     }
 	
 	//Update
-	@PutMapping("/{id}")
+	@PutMapping("funcionarios/{id}")
     public Funcionario update(@RequestBody Funcionario funcionario){
         return funcionarioService.save(funcionario);
     }

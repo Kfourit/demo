@@ -20,24 +20,30 @@ public class StartFuncionarioApplication {
         SpringApplication.run(StartFuncionarioApplication.class, args);
     }
 
-	// uncomment this if you want to init database with a dump funcionario and atividade
+	// uncomment this if you want to init database with dump entities
 	/*
     @Bean
-    CommandLineRunner initDatabase(FuncionarioRepository funcionarioRepository, AtividadeRepository atividadeRepository) {
+    CommandLineRunner initDatabase(FuncionarioRepository funcionarioRepository, AtividadeRepository atividadeRepository,
+    		EPIRepository epiRepository) {
         return args -> {
         	
         	Funcionario funcionario = this.createDumpFuncionario();
         	Atividade atividade = this.createDumpAtividade();
+        	EPI epi = this.createDumpEPI();
      	
+        	atividade.addEPI(epi);
         	funcionario.addAtividade(atividade);
         	
-        	atividadeRepository.save(atividade);
-            funcionarioRepository.save(funcionario);
-            
-            
+        	//System.out.println(atividade);
+        	
+        	//epiRepository.save(epi);
+        	//atividadeRepository.save(atividade);
+            //funcionarioRepository.save(funcionario);
+                     
         };
     }
     */
+    
     
     private Atividade createDumpAtividade() {
     	Atividade atividade = new Atividade();
@@ -55,6 +61,16 @@ public class StartFuncionarioApplication {
     	funcionario.setSexo(0);
  	
     	return funcionario;
+    }
+    
+    private EPI createDumpEPI() {
+    	
+    	EPI epi = new EPI();
+    	
+    	epi.setNome("epi1");
+    	epi.setNumeroCA("9876");
+    	
+    	return epi;
     }
 	
 
